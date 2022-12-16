@@ -21,12 +21,14 @@ app.post("/signin", (req, res) => {
     res.status(404).send("Username does not exist.");
   });
 });
-
 app.post("/verify", (req, res) => {
   jwt.verify(req.body.jwt, process.env.JWT_KEY, (err, resp) => {
     if (err) return res.status(401).send(err);
     return res.send("Successfully Verified");
   });
+});
+app.all("*", (req, res) => {
+  res.send("Hi there!");
 });
 
 app.listen(PORT);
