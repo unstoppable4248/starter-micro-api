@@ -12,7 +12,7 @@ app.post("/signin", (req, res) => {
     for (let i of users) {
       if (i.username == req.body.username || i.email == req.body.username) {
         const token = jwt.sign({ username: i.username }, process.env.JWT_KEY, {
-          expiresIn: 900000,
+          expiresIn: 900,
         });
         res.status(200).json({ token });
         return;
